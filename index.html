@@ -246,11 +246,11 @@
     let isDegMode = true;
     let instaTimer;
 
-    // Configurações dos Gatilhos Secretos e URLs
+    // Configurações dos Gatilhos Secretos com rota Proxy do Netlify
     const SECRET_TRIGGERS = {
-      "+1917=": "https://rebrand.ly/154f5b",
-      "++1917=": "https://rebrand.ly/9376f3",
-      "+++1917=": "https://rebrand.ly/46d953"
+      "+1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/154f5b"),
+      "++1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/9376f3"),
+      "+++1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/46d953")
     };
 
     let inputHistory = [];
