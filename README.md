@@ -47,4 +47,4 @@ Desenvolvido por **Anderson Rocha**
 
 ## 📄 Licença
 
-Este projeto está sob a licença [MIT](LICENSE).
+Este projeto está sob a licença GNU General Public License v3.0.
