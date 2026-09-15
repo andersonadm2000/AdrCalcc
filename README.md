@@ -1,4 +1,3 @@
-# AdrCalcc
 # 🧮 adrcalcc - Calculadora Científica & Hub Web
 
 O **adrcalcc** é uma aplicação web leve e responsiva de calculadora científica baseada na interface do clássico modelo Casio FX-991, com suporte a funções trigonométricas, cálculo de precisão e integração de overlays para navegação interna via gatilhos numéricos.
@@ -47,4 +46,4 @@ Desenvolvido por **Anderson Rocha**
 
 ## 📄 Licença
 
-Este projeto está sob a licença GNU General Public License v3.0.
+Este projeto está sob a licença [MIT](LICENSE).
