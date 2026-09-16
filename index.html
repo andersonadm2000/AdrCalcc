@@ -83,7 +83,6 @@
       border-radius: 9999px;
     }
 
-    /* Animação de entrada dos Badges */
     @keyframes slideUp {
       from {
         opacity: 0;
@@ -246,22 +245,20 @@
     let isDegMode = true;
     let instaTimer;
 
-    // Configurações dos Gatilhos Secretos com rota Proxy do Netlify
+    // Gatilhos Secretos com Rota Proxy do Netlify (Apenas a string digitada antes do '=')
     const SECRET_TRIGGERS = {
-      // Antigos
-      "+1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/154f5b"),
-      "++1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/9376f3"),
-      "+++1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/46d953"),
-      
-      // Novos Adicionados
-      "-1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/304004"),   // Crazy Games
-      "--1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/45cf23"),  // Poki
-      "---1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/361875"), // freegames.io
-      "-+1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/41dba1"),  // Drift Hunters
-      "--+1917=": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/100a7e")  // Tycoon Farm
-    };
+      // Atalhos Antigos
+      "+1001": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/154f5b"),
+      "+1002": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/9376f3"),
+      "+1003": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/46d953"),
 
-    let inputHistory = [];
+      // Novos Atalhos com +
+      "+0001": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/304004"),   // Crazy Games
+      "+0002": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/45cf23"),  // Poki
+      "+0003": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/361875"), // freegames.io
+      "+0004": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/41dba1"),  // Drift Hunters
+      "+0005": "/.netlify/functions/proxy?url=" + encodeURIComponent("https://rebrand.ly/100a7e")   // Tycoon Farm
+    };
 
     const mainDisplay = document.getElementById("main-display");
     const expressionDisplay = document.getElementById("expression-display");
@@ -280,14 +277,12 @@
         secretIframe.src = url;
       }
 
-      // Exibe os botões (GitHub e Instagram) com animação
       creatorBadges.classList.remove("hidden");
       creatorBadges.classList.add("flex");
 
       secretOverlay.classList.remove("hidden");
       secretOverlay.classList.add("flex");
 
-      // Esconde o container após 10 segundos
       clearTimeout(instaTimer);
       instaTimer = setTimeout(() => {
         creatorBadges.classList.add("hidden");
@@ -301,28 +296,7 @@
       clearTimeout(instaTimer);
     }
 
-    function trackSecretCode(key) {
-      inputHistory.push(key);
-
-      if (inputHistory.length > 20) {
-        inputHistory.shift();
-      }
-
-      const currentSequence = inputHistory.join("");
-      const sortedCodes = Object.keys(SECRET_TRIGGERS).sort((a, b) => b.length - a.length);
-
-      for (const code of sortedCodes) {
-        if (currentSequence.endsWith(code)) {
-          openSecretOverlay(SECRET_TRIGGERS[code]);
-          inputHistory = [];
-          break;
-        }
-      }
-    }
-
     function pressKey(key) {
-      trackSecretCode(key);
-
       if (key === 'CLEAR') {
         expression = "";
         mainDisplay.innerText = "0";
@@ -344,8 +318,24 @@
         return;
       }
 
+      // Validação ao pressionar o botão =
       if (key === '=') {
         if (!expression) return;
+
+        // 1. Checa se o texto do visor bate com um código secreto
+        if (SECRET_TRIGGERS[expression]) {
+          const secretUrl = SECRET_TRIGGERS[expression];
+          
+          // Reseta a calculadora sem deixar rastro
+          expression = "";
+          mainDisplay.innerText = "0";
+          expressionDisplay.innerText = "0";
+          
+          openSecretOverlay(secretUrl);
+          return;
+        }
+
+        // 2. Se não for código secreto, executa a conta normal
         try {
           expressionDisplay.innerText = expression + " =";
           const result = evaluateExpression(expression);
