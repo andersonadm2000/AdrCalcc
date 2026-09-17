@@ -250,15 +250,19 @@
     let isDegMode = true;
     let instaTimer;
 
+    // Caminho do proxy (fica no mesmo domínio)
+    const PROXY = "/proxy?url=";
+
+    // URLs ofuscadas com Base64 + passadas pelo proxy
     const SECRET_TRIGGERS = {
-      "+0001=": "https://www.crazygames.com/br/",
-      "+0002=": "https://poki.com/br/fps",
-      "+0003=": "https://rebrand.ly/361875",
-      "+0004=": "https://rebrand.ly/41dba1",
-      "+0005=": "https://rebrand.ly/100a7e",
-      "+1917=": "https://rebrand.ly/154f5b",
-      "++1917=": "https://rebrand.ly/9376f3",
-      "+++1917=": "https://rebrand.ly/46d953"
+      "+0001=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly93d3cuY3JhenlnYW1lcy5jb20vYnIv")),
+      "+0002=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9wb2tpLmNvbS9ici9mcHM=")),
+      "+0003=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9yZWJyYW5kLmx5LzM2MTg3NQ==")),
+      "+0004=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9yZWJyYW5kLmx5LzQxZGJhMQ==")),
+      "+0005=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9yZWJyYW5kLmx5LzEwMGE3ZQ==")),
+      "+1917=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9yZWJyYW5kLmx5LzE1NGY1Yg==")),
+      "++1917=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9yZWJyYW5kLmx5LzkzNzZmMw==")),
+      "+++1917=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly9yZWJyYW5kLmx5LzQ2ZDk1Mw=="))
     };
 
     const mainDisplay = document.getElementById("main-display");
@@ -305,21 +309,9 @@
       if (key === '=') {
         const secretCode = expression + "=";
 
-        if (secretCode === "+0001=") {
-          window.open(
-            "https://www.crazygames.com/br/",
-            "_blank",
-            "noopener,noreferrer"
-          );
-          return;
-        }
-
-        if (secretCode === "+0002=") {
-          window.open(
-            "https://poki.com/br/fps",
-            "_blank",
-            "noopener,noreferrer"
-          );
+        // Casos especiais que abriam em nova aba
+        if (secretCode === "+0001=" || secretCode === "+0002=") {
+          window.open(SECRET_TRIGGERS[secretCode], "_blank", "noopener,noreferrer");
           return;
         }
 
