@@ -353,7 +353,7 @@
         clearInterval(proxyCountdownTimer);
 
         window.open(
-          "https://hide.me/en/proxy",
+          "https://108.181.24.243/__cpi.php?s=UkQ2YXlSaWJuc3ZoeGR2dG04WW9LblZLYkNrTTZTRy9xWTluWTdkVXg0cmhXTGcxblU1V1hTSmZONUJZTUFpamF2WjlZSzVPbFpGd0F5SVkyWitqNndHYkhHOUVxam9yVWRVd2E2STZLY3M9&r=aHR0cHM6Ly8xMDguMTgxLjI0LjI0My8%2FX19jcG89YUhSMGNITTZMeTlqWVd4alkzQnlieTV3WVdkbGN5NWtaIWFk%3D&__cpo=1",
           "_blank",
           "noopener,noreferrer"
         );
@@ -511,7 +511,7 @@
         .replace(/ln\(/g, 'Math.log(')
         .replace(/\^/g, '**');
 
-            parsed = parsed.replace(
+      parsed = parsed.replace(
         /(\d+)!/g,
         (_, num) => `factorial(${num})`
       );
@@ -548,6 +548,7 @@
     document.addEventListener('keydown', (e) => {
 
       if (e.key === 'Escape') {
+
         if (!secretOverlay.classList.contains('hidden')) {
           closeSecretOverlay();
           return;
