@@ -6,8 +6,10 @@
 
   <link rel="icon" type="image/png" href="favicon.png">
 
+  <!-- Endereço oficial do site -->
   <link rel="canonical" href="https://calccpro.pages.dev/">
 
+  <!-- Informações do site -->
   <meta name="title" content="CalccPro">
   <meta name="description" content="CalccPro - FX-991 Simulator">
   <meta property="og:title" content="CalccPro">
@@ -17,6 +19,7 @@
 
   <title>CalccPro</title>
 
+  <!-- Estilos e Fontes -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -210,22 +213,6 @@
         loading="lazy">
       </iframe>
 
-      <div id="proxy-message" class="absolute inset-0 flex items-center justify-center pointer-events-none hidden">
-        <div class="text-center px-6">
-          <div class="mb-5">
-            <i class="fa-solid fa-globe text-indigo-400 text-4xl animate-pulse"></i>
-          </div>
-
-          <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">
-            Redirecionando para proxy
-          </h2>
-
-          <p class="text-sm text-slate-400">
-            Aguarde <span id="proxy-countdown" class="text-indigo-300 font-bold">5</span> segundos...
-          </p>
-        </div>
-      </div>
-
       <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
 
         <a href="https://github.com/andersonadm2000/Calccpro"
@@ -262,18 +249,9 @@
     let isEvaluated = false;
     let isDegMode = true;
     let instaTimer;
-    let proxyTimer;
-    let proxyCountdownTimer;
 
     const SECRET_TRIGGERS = {
-      "+0001=": "https://www.crazygames.com/br/",
-      "+0002=": "https://poki.com/br/fps",
-      "+0003=": "https://rebrand.ly/361875",
-      "+0004=": "https://rebrand.ly/41dba1",
-      "+0005=": "https://rebrand.ly/100a7e",
-      "+1917=": "https://rebrand.ly/154f5b",
-      "++1917=": "https://rebrand.ly/9376f3",
-      "+++1917=": "https://rebrand.ly/46d953"
+      "+0000=": "https://www.croxyproxy.com"
     };
 
     const mainDisplay = document.getElementById("main-display");
@@ -282,17 +260,24 @@
     const secretOverlay = document.getElementById("secret-overlay");
     const secretIframe = document.getElementById("secret-iframe");
     const creatorBadges = document.getElementById("creator-badges");
-    const proxyMessage = document.getElementById("proxy-message");
-    const proxyCountdown = document.getElementById("proxy-countdown");
 
     function toggleAngleMode() {
       isDegMode = !isDegMode;
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
-    function showCreatorBadges() {
+    function openSecretOverlay(url) {
+      secretIframe.removeAttribute("src");
+
+      setTimeout(() => {
+        secretIframe.src = url;
+      }, 50);
+
       creatorBadges.classList.remove("hidden");
       creatorBadges.classList.add("flex");
+
+      secretOverlay.classList.remove("hidden");
+      secretOverlay.classList.add("flex");
 
       clearTimeout(instaTimer);
 
@@ -302,109 +287,16 @@
       }, 10000);
     }
 
-    function openSecretOverlay(url) {
-      proxyMessage.classList.add("hidden");
-
-      secretIframe.removeAttribute("src");
-
-      setTimeout(() => {
-        secretIframe.src = url;
-      }, 50);
-
-      showCreatorBadges();
-
-      secretOverlay.classList.remove("hidden");
-      secretOverlay.classList.add("flex");
-    }
-
-    function openProxyRedirect() {
-      clearTimeout(proxyTimer);
-      clearInterval(proxyCountdownTimer);
-
-      secretIframe.removeAttribute("src");
-
-      proxyMessage.classList.remove("hidden");
-
-      secretOverlay.classList.remove("hidden");
-      secretOverlay.classList.add("flex");
-
-      creatorBadges.classList.remove("hidden");
-      creatorBadges.classList.add("flex");
-
-      clearTimeout(instaTimer);
-
-      proxyCountdown.innerText = "5";
-
-      let count = 5;
-
-      proxyCountdownTimer = setInterval(() => {
-        count--;
-
-        if (count >= 0) {
-          proxyCountdown.innerText = count;
-        }
-
-        if (count <= 0) {
-          clearInterval(proxyCountdownTimer);
-        }
-      }, 1000);
-
-      proxyTimer = setTimeout(() => {
-        clearInterval(proxyCountdownTimer);
-
-        window.open(
-          "https://108.181.24.243/__cpi.php?s=UkQ2YXlSaWJuc3ZoeGR2dG04WW9LblZLYkNrTTZTRy9xWTluWTdkVXg0cmhXTGcxblU1V1hTSmZONUJZTUFpamF2WjlZSzVPbFpGd0F5SVkyWitqNndHYkhHOUVxam9yVWRVd2E2STZLY3M9&r=aHR0cHM6Ly8xMDguMTgxLjI0LjI0My8%2FX19jcG89YUhSMGNITTZMeTlqWVd4alkzQnlieTV3WVdkbGN5NWtaIWFk%3D&__cpo=1",
-          "_blank",
-          "noopener,noreferrer"
-        );
-
-        proxyMessage.classList.add("hidden");
-        secretOverlay.classList.remove("flex");
-        secretOverlay.classList.add("hidden");
-
-        creatorBadges.classList.add("hidden");
-        creatorBadges.classList.remove("flex");
-      }, 5000);
-    }
-
     function closeSecretOverlay() {
-      clearTimeout(instaTimer);
-      clearTimeout(proxyTimer);
-      clearInterval(proxyCountdownTimer);
-
-      proxyMessage.classList.add("hidden");
-
       secretOverlay.classList.remove("flex");
       secretOverlay.classList.add("hidden");
+      clearTimeout(instaTimer);
     }
 
     function pressKey(key) {
 
       if (key === '=') {
         const secretCode = expression + "=";
-
-        if (secretCode === "0000=") {
-          openProxyRedirect();
-          return;
-        }
-
-        if (secretCode === "+0001=") {
-          window.open(
-            "https://www.crazygames.com/br/",
-            "_blank",
-            "noopener,noreferrer"
-          );
-          return;
-        }
-
-        if (secretCode === "+0002=") {
-          window.open(
-            "https://poki.com/br/fps",
-            "_blank",
-            "noopener,noreferrer"
-          );
-          return;
-        }
 
         if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
           openSecretOverlay(SECRET_TRIGGERS[secretCode]);
