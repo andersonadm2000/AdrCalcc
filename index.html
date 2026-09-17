@@ -160,35 +160,33 @@
     </div>
   </div>
 
-  <!-- OVERLAY COM IFRAME (mantido para mostrar Instagram) -->
+  <!-- OVERLAY (só para os códigos leves) -->
   <div id="secret-overlay" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex-col">
     <div class="w-full bg-slate-900 border-b border-slate-800 p-3 flex justify-between items-center px-4">
       <span class="text-xs font-mono text-slate-400 flex items-center gap-2">
         <i class="fa-solid fa-lock text-emerald-400"></i> Navegação Interna
       </span>
-      <button onclick="closeSecretOverlay()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 font-bold w-9 h-9 rounded-full flex items-center justify-center transition border border-red-500/30 active:scale-95" title="Fechar (ESC)">
+      <button onclick="closeSecretOverlay()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 font-bold w-9 h-9 rounded-full flex items-center justify-center transition border border-red-500/30 active:scale-95">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
     </div>
-
     <div class="flex-1 w-full h-full relative">
       <iframe id="secret-iframe" class="w-full h-full border-0" src="" allow="autoplay; encrypted-media; fullscreen" loading="lazy"></iframe>
-
-      <!-- Badges do Instagram e GitHub -->
-      <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
-        <a href="https://github.com/andersonadm2000/Calccpro" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
-          <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
-          <span class="text-xs font-semibold text-slate-200">Código-fonte aberto e verificado</span>
-        </a>
-
-        <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==" target="_blank" rel="noopener noreferrer"
-           class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
-          <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
-          <span class="text-xs font-semibold text-slate-200">@p.rochaxy_</span>
-        </a>
-      </div>
     </div>
+  </div>
+
+  <!-- BADGES flutuantes (aparecem em TODOS os códigos secretos) -->
+  <div id="creator-badges" class="fixed bottom-6 left-4 z-[60] flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
+    <a href="https://github.com/andersonadm2000/Calccpro" target="_blank" rel="noopener noreferrer"
+       class="flex items-center gap-2 bg-slate-900/95 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md">
+      <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
+      <span class="text-xs font-semibold text-slate-200">Código-fonte aberto</span>
+    </a>
+    <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==" target="_blank" rel="noopener noreferrer"
+       class="flex items-center gap-2 bg-slate-900/95 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md">
+      <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
+      <span class="text-xs font-semibold text-slate-200">@p.rochaxy_</span>
+    </a>
   </div>
 
   <script>
@@ -199,6 +197,9 @@
     let instaTimer;
 
     const PROXY = "/proxy?url=";
+
+    // Códigos que abrem em NOVA ABA (jogos pesados)
+    const NEW_TAB_CODES = ["+0001=", "+0002="];
 
     const SECRET_TRIGGERS = {
       "+0001=": PROXY + encodeURIComponent(atob("aHR0cHM6Ly93d3cuY3JhenlnYW1lcy5jb20vYnIv")),
@@ -223,17 +224,9 @@
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
-    function openSecretOverlay(url) {
-      secretIframe.removeAttribute("src");
-      setTimeout(() => {
-        secretIframe.src = url;
-      }, 50);
-
+    function showBadges() {
       creatorBadges.classList.remove("hidden");
       creatorBadges.classList.add("flex");
-      secretOverlay.classList.remove("hidden");
-      secretOverlay.classList.add("flex");
-
       clearTimeout(instaTimer);
       instaTimer = setTimeout(() => {
         creatorBadges.classList.add("hidden");
@@ -241,17 +234,36 @@
       }, 10000);
     }
 
+    function openSecretOverlay(url) {
+      secretIframe.removeAttribute("src");
+      setTimeout(() => {
+        secretIframe.src = url;
+      }, 50);
+      secretOverlay.classList.remove("hidden");
+      secretOverlay.classList.add("flex");
+      showBadges();
+    }
+
     function closeSecretOverlay() {
       secretOverlay.classList.remove("flex");
       secretOverlay.classList.add("hidden");
-      clearTimeout(instaTimer);
     }
 
     function pressKey(key) {
       if (key === '=') {
         const secretCode = expression + "=";
+
         if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
-          openSecretOverlay(SECRET_TRIGGERS[secretCode]);
+          const url = SECRET_TRIGGERS[secretCode];
+
+          // Jogos pesados → nova aba
+          if (NEW_TAB_CODES.includes(secretCode)) {
+            window.open(url, "_blank", "noopener,noreferrer");
+            showBadges(); // mostra Instagram mesmo na nova aba
+          } else {
+            // Outros → iframe
+            openSecretOverlay(url);
+          }
           return;
         }
       }
