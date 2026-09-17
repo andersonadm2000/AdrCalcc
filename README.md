@@ -1,49 +1,121 @@
-# 🧮 AdrCalcc - Calculadora Científica & Hub Web
+# 🧮 CalccPro - Calculadora Científica & Hub Web
 
-O **adrcalcc** é uma aplicação web leve e responsiva de calculadora científica baseada na interface do clássico modelo Casio FX-991, com suporte a funções trigonométricas, cálculo de precisão e integração de overlays para navegação interna via gatilhos numéricos.
+O **CalccPro** é uma aplicação web leve e responsiva de calculadora científica inspirada na interface da clássica Casio FX-991, com suporte a funções matemáticas, trigonometria em graus/radianos, cálculo de precisão e integração com conteúdos externos através de gatilhos numéricos.
 
-🚀 **Acesse a versão ao vivo:** [adrcalcc.netlify.app](https://adrcalcc.netlify.app)
+🚀 **Acesse a versão ao vivo:** [CalccPro](https://adrcalcc.netlify.app)
 
 ---
 
 ## 🔒 Transparência e Segurança
 
-Este repositório é totalmente **open-source** para garantir aos usuários total transparência sobre o funcionamento do site:
+Este repositório é **open-source**, permitindo que o código da aplicação seja consultado e verificado publicamente.
 
-- 🛡️ **Zero Coleta de Dados:** O site não armazena cookies de rastreamento, senhas ou informações pessoais.
-- ⚡ **Execução 100% Client-Side:** Todo o processamento de matemática e navegação ocorre diretamente no navegador do próprio usuário (Vanilla JavaScript + Tailwind CDN).
-- 🔓 **Sem Dependências Ocultas:** Nenhum script de terceiros malicioso, minerador ou rastreador invasivo é carregado.
+- 🛡️ **Processamento local:** Os cálculos são executados diretamente no navegador através de JavaScript.
+- ⚡ **Execução Client-Side:** A lógica principal da calculadora e da interface funciona no próprio navegador do usuário.
+- 🔓 **Código-fonte público:** O código da aplicação está disponível neste repositório para consulta.
+- 🚫 **Sem sistema próprio de contas:** A aplicação não possui login ou cadastro de usuários.
+
+> **Observação:** a aplicação utiliza recursos externos públicos, como Tailwind CSS via CDN, Font Awesome e Google Fonts, além dos endereços externos utilizados pelos gatilhos de navegação.
 
 ---
 
-## 🎮 Comandos Secretos no Teclado Numérico
+## 🧮 Funções da Calculadora
 
-A calculadora possui atalhos de navegação interna que ativam overlays no próprio navegador:
+O CalccPro possui uma interface inspirada em calculadoras científicas tradicionais, incluindo:
 
-| Comando | Descrição |
-| :--- | :--- |
-| `+1917=` | Abre a plataforma de jogos casuais |
-| `++1917=` | Carrega o emulador de consoles clássicos |
-| `+++1917=` | Acessa o hub Jogos 360 |
+- Operações básicas: `+`, `-`, `×`, `÷`
+- Parênteses
+- Números decimais
+- Potenciação `xⁿ`
+- Raiz quadrada `√`
+- Fatorial `x!`
+- Porcentagem `%`
+- Constante π
+- Constante de Euler `e`
+- `sin`
+- `cos`
+- `tan`
+- `log`
+- `ln`
+- `Ans` para reutilizar o último resultado
+- Alternância entre **DEG** e **RAD**
+- Teclado físico para utilização pelo computador
+- Botão `AC` para limpar a expressão
+- Botão `DEL` para apagar caracteres
+
+---
+
+## 🔒 Gatilhos Secretos
+
+A calculadora possui comandos especiais que podem ser digitados diretamente no teclado numérico e confirmados com `=`.
+
+| Comando | Conteúdo | Navegação |
+| :--- | :--- | :--- |
+| `+0001=` | Crazy Games | 🆕 Nova aba |
+| `+0002=` | Poki | 🆕 Nova aba |
+| `+0003=` | freegames.io | 🖥️ Mesma aba |
+| `+0004=` | Drift Hunters | 🖥️ Mesma aba |
+| `+0005=` | Tycoon Farm | 🖥️ Mesma aba |
+| `+1917=` | Página de jogos casuais simples | 🖥️ Mesma aba |
+| `++1917=` | Emulador online de consoles clássicos | 🖥️ Mesma aba |
+| `+++1917=` | Jogos360.com | 🖥️ Mesma aba |
+
+### Como funciona
+
+Os gatilhos `+0001=` e `+0002=` abrem seus respectivos conteúdos em **uma nova aba do navegador**, utilizando `window.open()`.
+
+A partir do gatilho `+0003=`, os conteúdos são carregados na **mesma aba**, através do overlay interno da aplicação e de um `iframe`.
+
+Para fechar o conteúdo exibido no overlay, basta utilizar o botão **X** no canto superior direito ou pressionar a tecla `ESC`.
+
+---
+
+## 🖥️ Overlay de Navegação
+
+Os conteúdos carregados pelos gatilhos internos são exibidos através de uma camada sobre a calculadora.
+
+O overlay possui:
+
+- Barra superior de navegação.
+- Botão para fechar o conteúdo.
+- Suporte à tecla `ESC`.
+- `iframe` em tela cheia.
+- Botões de acesso ao GitHub e Instagram.
+- Os botões do criador são exibidos temporariamente por **10 segundos** após a abertura do overlay.
+
+---
+
+## 👨‍💻 Código-fonte
+
+O projeto possui código-fonte aberto para consulta e verificação:
+
+**GitHub:** https://github.com/andersonadm2000/Calccpro
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **HTML5** & **CSS3**
-- **JavaScript (ES6+)** - Manipulação nativa do DOM
-- **Tailwind CSS** (via CDN) - Estilização responsiva e tema Dark
-- **FontAwesome** - Ícones de interface
+- **HTML5** — Estrutura da aplicação
+- **CSS3** — Estilos e efeitos visuais
+- **JavaScript ES6+** — Lógica da calculadora e manipulação do DOM
+- **Tailwind CSS** — Estilização responsiva através de CDN
+- **Font Awesome 6.4.0** — Ícones da interface
+- **Google Fonts** — JetBrains Mono e Plus Jakarta Sans
+- **Iframe** — Exibição dos conteúdos internos
 
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Anderson da Rocha Pires**  
-- Instagram: [@p.rochaxy_](https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==)
+Desenvolvido por **Anderson da Rocha Pires**
+
+- Instagram: https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==
+- GitHub: https://github.com/andersonadm2000
 
 ---
 
 ## 📄 Licença
 
-Este projeto está sob a licença [MIT](LICENSE).
+Este projeto está sob a licença **MIT**.
+
+Consulte o arquivo [`LICENSE`](LICENSE) para obter os termos completos da licença.
