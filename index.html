@@ -247,7 +247,7 @@
       <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
 
         <!-- Botão do GitHub Pages / Projeto -->
-        <a href="https://andersonadm2000.github.io/Calccpro/" 
+        <a href="https://github.com/andersonadm2000/Calccpro" 
            target="_blank" 
            rel="noopener noreferrer" 
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
@@ -551,16 +551,9 @@
         pressKey(e.key);
       }
 
-      else if (e.key === '^') {
-        pressKey('^');
-      }
-
-      else if (e.key === '!') {
-        pressKey('!');
-      }
-
-      else if (e.key === '%') {
-        pressKey('%');
+      else if (e.key === 'Enter' || e.key === '=') {
+        e.preventDefault();
+        pressKey('=');
       }
     });
   </script>
