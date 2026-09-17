@@ -64,6 +64,7 @@
       height: 3px;
       width: 3px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 9999px;
@@ -86,6 +87,7 @@
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 text-slate-100 relative overflow-x-hidden">
 
   <!-- Container da Calculadora -->
@@ -101,6 +103,7 @@
         <span class="p-2 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">
           <i class="fa-solid fa-calculator text-xs"></i>
         </span>
+
         <div>
           <h1 class="text-xs font-bold tracking-wider text-slate-200 uppercase">CalccPro</h1>
           <p class="text-[10px] text-slate-400 font-medium">FX-991 Simulator</p>
@@ -112,6 +115,7 @@
         <button id="deg-rad-toggle" onclick="toggleAngleMode()" class="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-800 text-indigo-400 border border-slate-700/60 font-semibold hover:bg-slate-700 transition">
           DEG
         </button>
+
         <div class="flex gap-1.5 ml-1">
           <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block shadow-sm"></span>
           <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block shadow-sm"></span>
@@ -122,10 +126,12 @@
 
     <!-- Visor LCD -->
     <div class="bg-slate-950/80 rounded-2xl p-4 mb-4 border border-slate-800/80 text-right shadow-inner relative group">
+
       <!-- Histórico / Expressão -->
       <div id="expression-display" class="h-6 text-xs text-indigo-300/70 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar mb-1 flex items-center justify-end">
         0
       </div>
+
       <!-- Resultado Principal -->
       <div id="main-display" class="text-3xl sm:text-4xl font-bold font-mono text-slate-100 overflow-x-auto whitespace-nowrap custom-scrollbar tracking-tight leading-none py-1">
         0
@@ -137,42 +143,66 @@
       
       <!-- Linha 1: Funções de Limpeza -->
       <button onclick="pressKey('CLEAR')" class="btn-key col-span-2 bg-red-500/15 hover:bg-red-500/25 text-red-400 font-semibold p-3 rounded-xl border border-red-500/20 active:bg-red-500/30">AC</button>
-      <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50"><i class="fa-solid fa-delete-left"></i></button>
+
+      <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50">
+        <i class="fa-solid fa-delete-left"></i>
+      </button>
+
       <button onclick="pressKey('(')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">(</button>
+
       <button onclick="pressKey(')')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">)</button>
 
       <!-- Linha 2: Científicas 1 -->
       <button onclick="pressKey('sin(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">sin</button>
+
       <button onclick="pressKey('cos(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">cos</button>
+
       <button onclick="pressKey('tan(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">tan</button>
+
       <button onclick="pressKey('π')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">π</button>
+
       <button onclick="pressKey('÷')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">÷</button>
 
       <!-- Linha 3: Científicas 2 -->
       <button onclick="pressKey('sqrt(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">√</button>
+
       <button onclick="pressKey('log(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">log</button>
+
       <button onclick="pressKey('ln(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">ln</button>
+
       <button onclick="pressKey('^')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">xⁿ</button>
+
       <button onclick="pressKey('×')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">×</button>
 
       <!-- Linha 4: Números e Operações -->
       <button onclick="pressKey('7')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">7</button>
+
       <button onclick="pressKey('8')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">8</button>
+
       <button onclick="pressKey('9')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">9</button>
+
       <button onclick="pressKey('e')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">e</button>
+
       <button onclick="pressKey('-')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">-</button>
 
       <!-- Linha 5: Números e Operações -->
       <button onclick="pressKey('4')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">4</button>
+
       <button onclick="pressKey('5')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">5</button>
+
       <button onclick="pressKey('6')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">6</button>
+
       <button onclick="pressKey('!')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">x!</button>
+
       <button onclick="pressKey('+')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">+</button>
 
       <!-- Linha 6: Números e Operações -->
       <button onclick="pressKey('1')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">1</button>
+
       <button onclick="pressKey('2')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">2</button>
+
       <button onclick="pressKey('3')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">3</button>
+
       <button onclick="pressKey('%')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">%</button>
       
       <!-- Botão de Igual -->
@@ -180,7 +210,9 @@
 
       <!-- Linha 7: Zero e Ponto -->
       <button onclick="pressKey('0')" class="btn-key col-span-2 bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">0</button>
+
       <button onclick="pressKey('.')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">.</button>
+
       <button onclick="pressKey('Ans')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">Ans</button>
 
     </div>
@@ -188,11 +220,13 @@
 
   <!-- Modal / Aba Interna Overlay -->
   <div id="secret-overlay" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex-col">
+
     <!-- Barra Superior -->
     <div class="w-full bg-slate-900 border-b border-slate-800 p-3 flex justify-between items-center px-4">
       <span class="text-xs font-mono text-slate-400 flex items-center gap-2">
         <i class="fa-solid fa-lock text-emerald-400"></i> Navegação Interna
       </span>
+
       <button onclick="closeSecretOverlay()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 font-bold w-9 h-9 rounded-full flex items-center justify-center transition border border-red-500/30 active:scale-95" title="Fechar (ESC)">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
@@ -200,17 +234,29 @@
     
     <!-- Iframe Interno -->
     <div class="flex-1 w-full h-full relative">
-      <iframe id="secret-iframe" class="w-full h-full border-0" src="" allow="autoplay; encrypted-media; fullscreen" loading="lazy"></iframe>
 
-      <!-- Container dos Links do Criador (Canto Inferior Esquerdo) -->
+      <iframe
+        id="secret-iframe"
+        class="w-full h-full border-0"
+        src=""
+        allow="autoplay; encrypted-media; fullscreen"
+        loading="lazy">
+      </iframe>
+
+      <!-- Container dos Links do Criador -->
       <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
+
         <!-- Botão do GitHub Pages / Projeto -->
         <a href="https://andersonadm2000.github.io/Calccpro/" 
            target="_blank" 
            rel="noopener noreferrer" 
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
+
           <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
-          <span class="text-xs font-semibold text-slate-200">Código-fonte aberto e verificado</span>
+
+          <span class="text-xs font-semibold text-slate-200">
+            Código-fonte aberto e verificado
+          </span>
         </a>
 
         <!-- Botão do Instagram -->
@@ -218,9 +264,14 @@
            target="_blank" 
            rel="noopener noreferrer" 
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
+
           <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
-          <span class="text-xs font-semibold text-slate-200">@p.rochaxy_</span>
+
+          <span class="text-xs font-semibold text-slate-200">
+            @p.rochaxy_
+          </span>
         </a>
+
       </div>
     </div>
   </div>
@@ -232,10 +283,10 @@
     let isDegMode = true;
     let instaTimer;
 
-    // Configurações dos Gatilhos Secretos e URLs
+    // Configurações dos 8 Gatilhos Secretos
     const SECRET_TRIGGERS = {
-      "+0001=": "https://rebrand.ly/304004",
-      "+0002=": "https://rebrand.ly/45cf23",
+      "+0001=": "https://www.crazygames.com/br/",
+      "+0002=": "https://poki.com/br/fps",
       "+0003=": "https://rebrand.ly/361875",
       "+0004=": "https://rebrand.ly/41dba1",
       "+0005=": "https://rebrand.ly/100a7e",
@@ -243,8 +294,6 @@
       "++1917=": "https://rebrand.ly/9376f3",
       "+++1917=": "https://rebrand.ly/46d953"
     };
-
-    let inputHistory = [];
 
     const mainDisplay = document.getElementById("main-display");
     const expressionDisplay = document.getElementById("expression-display");
@@ -258,20 +307,25 @@
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
+    // Abre os sites normalmente dentro do iframe
     function openSecretOverlay(url) {
-      if (secretIframe.src !== url) {
-        secretIframe.src = url;
-      }
 
-      // Exibe os botões (GitHub e Instagram) com animação
+      secretIframe.removeAttribute("src");
+
+      setTimeout(() => {
+        secretIframe.src = url;
+      }, 50);
+
+      // Exibe os botões GitHub e Instagram
       creatorBadges.classList.remove("hidden");
       creatorBadges.classList.add("flex");
 
       secretOverlay.classList.remove("hidden");
       secretOverlay.classList.add("flex");
 
-      // Esconde o container após 10 segundos
+      // Esconde os botões após 10 segundos
       clearTimeout(instaTimer);
+
       instaTimer = setTimeout(() => {
         creatorBadges.classList.add("hidden");
         creatorBadges.classList.remove("flex");
@@ -284,42 +338,37 @@
       clearTimeout(instaTimer);
     }
 
-    // Guarda as teclas digitadas, mas só verifica o código quando "=" for pressionado
-    function trackSecretCode(key) {
-      if (key === '=') return;
-
-      inputHistory.push(key);
-
-      if (inputHistory.length > 20) {
-        inputHistory.shift();
-      }
-    }
-
-    // Verifica o código completo somente após "="
-    function checkSecretCode() {
-      const currentSequence = inputHistory.join("") + "=";
-      const sortedCodes = Object.keys(SECRET_TRIGGERS).sort((a, b) => b.length - a.length);
-
-      for (const code of sortedCodes) {
-        if (currentSequence.endsWith(code)) {
-          openSecretOverlay(SECRET_TRIGGERS[code]);
-          inputHistory = [];
-          return true;
-        }
-      }
-
-      inputHistory = [];
-      return false;
-    }
-
     function pressKey(key) {
+
+      /*
+       * +0001 e +0002 são abertos fora do iframe.
+       * Os outros códigos continuam usando o iframe normalmente.
+       */
       if (key === '=') {
-        // O código secreto só é verificado neste momento
-        if (checkSecretCode()) {
+        const secretCode = expression + "=";
+
+        if (secretCode === "+0001=") {
+          window.open(
+            "https://www.crazygames.com/br/",
+            "_blank",
+            "noopener,noreferrer"
+          );
           return;
         }
-      } else {
-        trackSecretCode(key);
+
+        if (secretCode === "+0002=") {
+          window.open(
+            "https://poki.com/br/fps",
+            "_blank",
+            "noopener,noreferrer"
+          );
+          return;
+        }
+
+        if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
+          openSecretOverlay(SECRET_TRIGGERS[secretCode]);
+          return;
+        }
       }
 
       if (key === 'CLEAR') {
@@ -327,7 +376,6 @@
         mainDisplay.innerText = "0";
         expressionDisplay.innerText = "0";
         isEvaluated = false;
-        inputHistory = [];
         return;
       }
 
@@ -346,17 +394,22 @@
 
       if (key === '=') {
         if (!expression) return;
+
         try {
           expressionDisplay.innerText = expression + " =";
+
           const result = evaluateExpression(expression);
+
           mainDisplay.innerText = result;
           lastAnswer = String(result);
           expression = String(result);
           isEvaluated = true;
+
         } catch (error) {
           mainDisplay.innerText = "Erro";
           isEvaluated = true;
         }
+
         return;
       }
 
@@ -364,6 +417,7 @@
         if (!['+', '-', '×', '÷', '^', '%'].includes(key)) {
           expression = "";
         }
+
         isEvaluated = false;
       }
 
@@ -379,16 +433,30 @@
     function factorial(n) {
       if (n < 0) return NaN;
       if (n === 0 || n === 1) return 1;
+
       let res = 1;
-      for (let i = 2; i <= n; i++) res *= i;
+
+      for (let i = 2; i <= n; i++) {
+        res *= i;
+      }
+
       return res;
     }
 
-    function sin(x) { return Math.sin(isDegMode ? x * (Math.PI / 180) : x); }
-    function cos(x) { return Math.cos(isDegMode ? x * (Math.PI / 180) : x); }
-    function tan(x) { return Math.tan(isDegMode ? x * (Math.PI / 180) : x); }
+    function sin(x) {
+      return Math.sin(isDegMode ? x * (Math.PI / 180) : x);
+    }
+
+    function cos(x) {
+      return Math.cos(isDegMode ? x * (Math.PI / 180) : x);
+    }
+
+    function tan(x) {
+      return Math.tan(isDegMode ? x * (Math.PI / 180) : x);
+    }
 
     function evaluateExpression(expr) {
+
       let parsed = expr
         .replace(/×/g, '*')
         .replace(/÷/g, '/')
@@ -402,22 +470,44 @@
         .replace(/ln\(/g, 'Math.log(')
         .replace(/\^/g, '**');
 
-      parsed = parsed.replace(/(\d+)!/g, (_, num) => `factorial(${num})`);
-      parsed = parsed.replace(/(\d+(\.\d+)?)%/g, '($1/100)');
+      parsed = parsed.replace(
+        /(\d+)!/g,
+        (_, num) => `factorial(${num})`
+      );
 
-      const func = new Function('factorial', 'sin', 'cos', 'tan', `return ${parsed};`);
-      let res = func(factorial, sin, cos, tan);
+      parsed = parsed.replace(
+        /(\d+(\.\d+)?)%/g,
+        '($1/100)'
+      );
+
+      const func = new Function(
+        'factorial',
+        'sin',
+        'cos',
+        'tan',
+        `return ${parsed};`
+      );
+
+      let res = func(
+        factorial,
+        sin,
+        cos,
+        tan
+      );
 
       if (typeof res === 'number') {
         if (!Number.isInteger(res)) {
           res = Number(res.toFixed(8));
         }
       }
+
       return res;
     }
 
     document.addEventListener('keydown', (e) => {
+
       if (e.key === 'Escape') {
+
         if (!secretOverlay.classList.contains('hidden')) {
           closeSecretOverlay();
           return;
@@ -427,18 +517,53 @@
         }
       }
 
-      if ((e.key >= '0' && e.key <= '9') || e.key === '.') pressKey(e.key);
-      else if (e.key === '+') pressKey('+');
-      else if (e.key === '-') pressKey('-');
-      else if (e.key === '*') pressKey('×');
-      else if (e.key === '/') { e.preventDefault(); pressKey('÷'); }
-      else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); pressKey('='); }
-      else if (e.key === 'Backspace') pressKey('DEL');
-      else if (e.key === '(' || e.key === ')') pressKey(e.key);
-      else if (e.key === '^') pressKey('^');
-      else if (e.key === '!') pressKey('!');
-      else if (e.key === '%') pressKey('%');
+      if ((e.key >= '0' && e.key <= '9') || e.key === '.') {
+        pressKey(e.key);
+      }
+
+      else if (e.key === '+') {
+        pressKey('+');
+      }
+
+      else if (e.key === '-') {
+        pressKey('-');
+      }
+
+      else if (e.key === '*') {
+        pressKey('×');
+      }
+
+      else if (e.key === '/') {
+        e.preventDefault();
+        pressKey('÷');
+      }
+
+      else if (e.key === 'Enter' || e.key === '=') {
+        e.preventDefault();
+        pressKey('=');
+      }
+
+      else if (e.key === 'Backspace') {
+        pressKey('DEL');
+      }
+
+      else if (e.key === '(' || e.key === ')') {
+        pressKey(e.key);
+      }
+
+      else if (e.key === '^') {
+        pressKey('^');
+      }
+
+      else if (e.key === '!') {
+        pressKey('!');
+      }
+
+      else if (e.key === '%') {
+        pressKey('%');
+      }
     });
   </script>
+
 </body>
 </html>
