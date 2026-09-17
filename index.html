@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Endereço oficial do site -->
+  <link rel="canonical" href="https://calccpro.pages.dev/">
+
+  <!-- Informações do site -->
+  <meta name="title" content="CalccPro">
+  <meta name="description" content="CalccPro - FX-991 Simulator">
+  <meta property="og:title" content="CalccPro">
+  <meta property="og:description" content="CalccPro - FX-991 Simulator">
+  <meta property="og:url" content="https://calccpro.pages.dev/">
+  <meta property="og:type" content="website">
+
   <title>CalccPro</title>
 
   <!-- Estilos e Fontes -->
@@ -70,7 +82,6 @@
       border-radius: 9999px;
     }
 
-    /* Animação de entrada dos Badges */
     @keyframes slideUp {
       from {
         opacity: 0;
@@ -90,14 +101,11 @@
 
 <body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 text-slate-100 relative overflow-x-hidden">
 
-  <!-- Container da Calculadora -->
   <div id="calculator-container" class="w-full max-w-md glass-panel rounded-3xl p-5 sm:p-6 relative overflow-hidden transition-all duration-300">
-    
-    <!-- Efeitos Visuais de Fundo -->
+
     <div class="absolute -top-20 -left-20 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Cabeçalho -->
     <div class="flex items-center justify-between mb-4 px-1">
       <div class="flex items-center gap-2">
         <span class="p-2 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">
@@ -110,7 +118,6 @@
         </div>
       </div>
 
-      <!-- Alternador RAD/DEG & Status -->
       <div class="flex items-center gap-2">
         <button id="deg-rad-toggle" onclick="toggleAngleMode()" class="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-800 text-indigo-400 border border-slate-700/60 font-semibold hover:bg-slate-700 transition">
           DEG
@@ -124,24 +131,18 @@
       </div>
     </div>
 
-    <!-- Visor LCD -->
     <div class="bg-slate-950/80 rounded-2xl p-4 mb-4 border border-slate-800/80 text-right shadow-inner relative group">
-
-      <!-- Histórico / Expressão -->
       <div id="expression-display" class="h-6 text-xs text-indigo-300/70 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar mb-1 flex items-center justify-end">
         0
       </div>
 
-      <!-- Resultado Principal -->
       <div id="main-display" class="text-3xl sm:text-4xl font-bold font-mono text-slate-100 overflow-x-auto whitespace-nowrap custom-scrollbar tracking-tight leading-none py-1">
         0
       </div>
     </div>
 
-    <!-- Teclado Grid -->
     <div class="grid grid-cols-5 gap-1.5 sm:gap-2 text-xs sm:text-sm">
-      
-      <!-- Linha 1: Funções de Limpeza -->
+
       <button onclick="pressKey('CLEAR')" class="btn-key col-span-2 bg-red-500/15 hover:bg-red-500/25 text-red-400 font-semibold p-3 rounded-xl border border-red-500/20 active:bg-red-500/30">AC</button>
 
       <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50">
@@ -152,76 +153,46 @@
 
       <button onclick="pressKey(')')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">)</button>
 
-      <!-- Linha 2: Científicas 1 -->
       <button onclick="pressKey('sin(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">sin</button>
-
       <button onclick="pressKey('cos(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">cos</button>
-
       <button onclick="pressKey('tan(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">tan</button>
-
       <button onclick="pressKey('π')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">π</button>
-
       <button onclick="pressKey('÷')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">÷</button>
 
-      <!-- Linha 3: Científicas 2 -->
       <button onclick="pressKey('sqrt(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">√</button>
-
       <button onclick="pressKey('log(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">log</button>
-
       <button onclick="pressKey('ln(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">ln</button>
-
       <button onclick="pressKey('^')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">xⁿ</button>
-
       <button onclick="pressKey('×')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">×</button>
 
-      <!-- Linha 4: Números e Operações -->
       <button onclick="pressKey('7')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">7</button>
-
       <button onclick="pressKey('8')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">8</button>
-
       <button onclick="pressKey('9')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">9</button>
-
       <button onclick="pressKey('e')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">e</button>
-
       <button onclick="pressKey('-')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">-</button>
 
-      <!-- Linha 5: Números e Operações -->
       <button onclick="pressKey('4')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">4</button>
-
       <button onclick="pressKey('5')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">5</button>
-
       <button onclick="pressKey('6')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">6</button>
-
       <button onclick="pressKey('!')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">x!</button>
-
       <button onclick="pressKey('+')" class="btn-key bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 font-semibold p-3 rounded-xl border border-indigo-500/30">+</button>
 
-      <!-- Linha 6: Números e Operações -->
       <button onclick="pressKey('1')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">1</button>
-
       <button onclick="pressKey('2')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">2</button>
-
       <button onclick="pressKey('3')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">3</button>
-
       <button onclick="pressKey('%')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">%</button>
-      
-      <!-- Botão de Igual -->
+
       <button onclick="pressKey('=')" class="btn-key row-span-2 bg-gradient-to-b from-indigo-500 to-indigo-600 hover:from-indigo-400 hover:to-indigo-500 text-white font-bold p-3 rounded-xl shadow-lg shadow-indigo-500/25 flex items-center justify-center text-xl border border-indigo-400/30">=</button>
 
-      <!-- Linha 7: Zero e Ponto -->
       <button onclick="pressKey('0')" class="btn-key col-span-2 bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">0</button>
-
       <button onclick="pressKey('.')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">.</button>
-
       <button onclick="pressKey('Ans')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">Ans</button>
 
     </div>
   </div>
 
-  <!-- Modal / Aba Interna Overlay -->
   <div id="secret-overlay" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex-col">
 
-    <!-- Barra Superior -->
     <div class="w-full bg-slate-900 border-b border-slate-800 p-3 flex justify-between items-center px-4">
       <span class="text-xs font-mono text-slate-400 flex items-center gap-2">
         <i class="fa-solid fa-lock text-emerald-400"></i> Navegação Interna
@@ -231,8 +202,7 @@
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
     </div>
-    
-    <!-- Iframe Interno -->
+
     <div class="flex-1 w-full h-full relative">
 
       <iframe
@@ -243,13 +213,11 @@
         loading="lazy">
       </iframe>
 
-      <!-- Container dos Links do Criador -->
       <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
 
-        <!-- Botão do GitHub Pages / Projeto -->
-        <a href="https://github.com/andersonadm2000/Calccpro" 
-           target="_blank" 
-           rel="noopener noreferrer" 
+        <a href="https://github.com/andersonadm2000/Calccpro"
+           target="_blank"
+           rel="noopener noreferrer"
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
 
           <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
@@ -259,10 +227,9 @@
           </span>
         </a>
 
-        <!-- Botão do Instagram -->
-        <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==" 
-           target="_blank" 
-           rel="noopener noreferrer" 
+        <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ=="
+           target="_blank"
+           rel="noopener noreferrer"
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
 
           <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
@@ -283,7 +250,6 @@
     let isDegMode = true;
     let instaTimer;
 
-    // Configurações dos 8 Gatilhos Secretos
     const SECRET_TRIGGERS = {
       "+0001=": "https://www.crazygames.com/br/",
       "+0002=": "https://poki.com/br/fps",
@@ -307,23 +273,19 @@
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
-    // Abre os sites normalmente dentro do iframe
     function openSecretOverlay(url) {
-
       secretIframe.removeAttribute("src");
 
       setTimeout(() => {
         secretIframe.src = url;
       }, 50);
 
-      // Exibe os botões GitHub e Instagram
       creatorBadges.classList.remove("hidden");
       creatorBadges.classList.add("flex");
 
       secretOverlay.classList.remove("hidden");
       secretOverlay.classList.add("flex");
 
-      // Esconde os botões após 10 segundos
       clearTimeout(instaTimer);
 
       instaTimer = setTimeout(() => {
@@ -340,10 +302,6 @@
 
     function pressKey(key) {
 
-      /*
-       * +0001 e +0002 são abertos fora do iframe.
-       * Os outros códigos continuam usando o iframe normalmente.
-       */
       if (key === '=') {
         const secretCode = expression + "=";
 
@@ -549,11 +507,6 @@
 
       else if (e.key === '(' || e.key === ')') {
         pressKey(e.key);
-      }
-
-      else if (e.key === 'Enter' || e.key === '=') {
-        e.preventDefault();
-        pressKey('=');
       }
     });
   </script>
