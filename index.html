@@ -210,6 +210,22 @@
         loading="lazy">
       </iframe>
 
+      <div id="proxy-message" class="absolute inset-0 flex items-center justify-center pointer-events-none hidden">
+        <div class="text-center px-6">
+          <div class="mb-5">
+            <i class="fa-solid fa-globe text-indigo-400 text-4xl animate-pulse"></i>
+          </div>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-white mb-2">
+            Redirecionando para proxy
+          </h2>
+
+          <p class="text-sm text-slate-400">
+            Aguarde <span id="proxy-countdown" class="text-indigo-300 font-bold">5</span> segundos...
+          </p>
+        </div>
+      </div>
+
       <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
 
         <a href="https://github.com/andersonadm2000/Calccpro"
@@ -246,9 +262,10 @@
     let isEvaluated = false;
     let isDegMode = true;
     let instaTimer;
+    let proxyTimer;
+    let proxyCountdownTimer;
 
     const SECRET_TRIGGERS = {
-      "+0000=": "https://www.croxyproxy.com",
       "+0001=": "https://www.crazygames.com/br/",
       "+0002=": "https://poki.com/br/fps",
       "+0003=": "https://rebrand.ly/361875",
@@ -265,24 +282,17 @@
     const secretOverlay = document.getElementById("secret-overlay");
     const secretIframe = document.getElementById("secret-iframe");
     const creatorBadges = document.getElementById("creator-badges");
+    const proxyMessage = document.getElementById("proxy-message");
+    const proxyCountdown = document.getElementById("proxy-countdown");
 
     function toggleAngleMode() {
       isDegMode = !isDegMode;
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
-    function openSecretOverlay(url) {
-      secretIframe.removeAttribute("src");
-
-      setTimeout(() => {
-        secretIframe.src = url;
-      }, 50);
-
+    function showCreatorBadges() {
       creatorBadges.classList.remove("hidden");
       creatorBadges.classList.add("flex");
-
-      secretOverlay.classList.remove("hidden");
-      secretOverlay.classList.add("flex");
 
       clearTimeout(instaTimer);
 
@@ -292,16 +302,91 @@
       }, 10000);
     }
 
+    function openSecretOverlay(url) {
+      proxyMessage.classList.add("hidden");
+
+      secretIframe.removeAttribute("src");
+
+      setTimeout(() => {
+        secretIframe.src = url;
+      }, 50);
+
+      showCreatorBadges();
+
+      secretOverlay.classList.remove("hidden");
+      secretOverlay.classList.add("flex");
+    }
+
+    function openProxyRedirect() {
+      clearTimeout(proxyTimer);
+      clearInterval(proxyCountdownTimer);
+
+      secretIframe.removeAttribute("src");
+
+      proxyMessage.classList.remove("hidden");
+
+      secretOverlay.classList.remove("hidden");
+      secretOverlay.classList.add("flex");
+
+      creatorBadges.classList.remove("hidden");
+      creatorBadges.classList.add("flex");
+
+      clearTimeout(instaTimer);
+
+      proxyCountdown.innerText = "5";
+
+      let count = 5;
+
+      proxyCountdownTimer = setInterval(() => {
+        count--;
+
+        if (count >= 0) {
+          proxyCountdown.innerText = count;
+        }
+
+        if (count <= 0) {
+          clearInterval(proxyCountdownTimer);
+        }
+      }, 1000);
+
+      proxyTimer = setTimeout(() => {
+        clearInterval(proxyCountdownTimer);
+
+        window.open(
+          "https://hide.me/en/proxy",
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+        proxyMessage.classList.add("hidden");
+        secretOverlay.classList.remove("flex");
+        secretOverlay.classList.add("hidden");
+
+        creatorBadges.classList.add("hidden");
+        creatorBadges.classList.remove("flex");
+      }, 5000);
+    }
+
     function closeSecretOverlay() {
+      clearTimeout(instaTimer);
+      clearTimeout(proxyTimer);
+      clearInterval(proxyCountdownTimer);
+
+      proxyMessage.classList.add("hidden");
+
       secretOverlay.classList.remove("flex");
       secretOverlay.classList.add("hidden");
-      clearTimeout(instaTimer);
     }
 
     function pressKey(key) {
 
       if (key === '=') {
         const secretCode = expression + "=";
+
+        if (secretCode === "0000=") {
+          openProxyRedirect();
+          return;
+        }
 
         if (secretCode === "+0001=") {
           window.open(
@@ -426,7 +511,7 @@
         .replace(/ln\(/g, 'Math.log(')
         .replace(/\^/g, '**');
 
-      parsed = parsed.replace(
+            parsed = parsed.replace(
         /(\d+)!/g,
         (_, num) => `factorial(${num})`
       );
@@ -463,7 +548,6 @@
     document.addEventListener('keydown', (e) => {
 
       if (e.key === 'Escape') {
-
         if (!secretOverlay.classList.contains('hidden')) {
           closeSecretOverlay();
           return;
