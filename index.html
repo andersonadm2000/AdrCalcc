@@ -251,7 +251,15 @@
     let instaTimer;
 
     const SECRET_TRIGGERS = {
-      "+0000=": "https://proxypal.net/"
+      "+0000=": "https://proxypal.net/",
+      "+0001=": "https://www.crazygames.com/br/",
+      "+0002=": "https://poki.com/br/fps",
+      "+0003=": "https://rebrand.ly/361875",
+      "+0004=": "https://rebrand.ly/41dba1",
+      "+0005=": "https://rebrand.ly/100a7e",
+      "+1917=": "https://rebrand.ly/154f5b",
+      "++1917=": "https://rebrand.ly/9376f3",
+      "+++1917=": "https://rebrand.ly/46d953"
     };
 
     const mainDisplay = document.getElementById("main-display");
@@ -297,6 +305,24 @@
 
       if (key === '=') {
         const secretCode = expression + "=";
+
+        if (secretCode === "+0001=") {
+          window.open(
+            "https://www.crazygames.com/br/",
+            "_blank",
+            "noopener,noreferrer"
+          );
+          return;
+        }
+
+        if (secretCode === "+0002=") {
+          window.open(
+            "https://poki.com/br/fps",
+            "_blank",
+            "noopener,noreferrer"
+          );
+          return;
+        }
 
         if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
           openSecretOverlay(SECRET_TRIGGERS[secretCode]);
