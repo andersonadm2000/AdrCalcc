@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" href="favicon.png">
+
   <link rel="canonical" href="https://calccpro.pages.dev/">
 
   <meta name="title" content="CalccPro">
@@ -48,6 +49,7 @@
                   radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),
                   #0f172a;
     }
+
     .glass-panel {
       background: rgba(30, 41, 59, 0.7);
       backdrop-filter: blur(20px);
@@ -55,27 +57,39 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     }
+
     .btn-key {
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
+
     .btn-key:active {
       transform: scale(0.92);
       filter: brightness(1.2);
     }
+
     .custom-scrollbar::-webkit-scrollbar {
       height: 3px;
       width: 3px;
     }
+
     .custom-scrollbar::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.2);
       border-radius: 9999px;
     }
+
     @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .animate-slide-up {
       animation: slideUp 0.4s ease-out forwards;
     }
@@ -94,6 +108,7 @@
         <span class="p-2 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">
           <i class="fa-solid fa-calculator text-xs"></i>
         </span>
+
         <div>
           <h1 class="text-xs font-bold tracking-wider text-slate-200 uppercase">CalccPro</h1>
           <p class="text-[10px] text-slate-400 font-medium">FX-991 Simulator</p>
@@ -104,6 +119,7 @@
         <button id="deg-rad-toggle" onclick="toggleAngleMode()" class="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-800 text-indigo-400 border border-slate-700/60 font-semibold hover:bg-slate-700 transition">
           DEG
         </button>
+
         <div class="flex gap-1.5 ml-1">
           <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block shadow-sm"></span>
           <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block shadow-sm"></span>
@@ -113,14 +129,25 @@
     </div>
 
     <div class="bg-slate-950/80 rounded-2xl p-4 mb-4 border border-slate-800/80 text-right shadow-inner relative group">
-      <div id="expression-display" class="h-6 text-xs text-indigo-300/70 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar mb-1 flex items-center justify-end">0</div>
-      <div id="main-display" class="text-3xl sm:text-4xl font-bold font-mono text-slate-100 overflow-x-auto whitespace-nowrap custom-scrollbar tracking-tight leading-none py-1">0</div>
+      <div id="expression-display" class="h-6 text-xs text-indigo-300/70 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar mb-1 flex items-center justify-end">
+        0
+      </div>
+
+      <div id="main-display" class="text-3xl sm:text-4xl font-bold font-mono text-slate-100 overflow-x-auto whitespace-nowrap custom-scrollbar tracking-tight leading-none py-1">
+        0
+      </div>
     </div>
 
     <div class="grid grid-cols-5 gap-1.5 sm:gap-2 text-xs sm:text-sm">
+
       <button onclick="pressKey('CLEAR')" class="btn-key col-span-2 bg-red-500/15 hover:bg-red-500/25 text-red-400 font-semibold p-3 rounded-xl border border-red-500/20 active:bg-red-500/30">AC</button>
-      <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50"><i class="fa-solid fa-delete-left"></i></button>
+
+      <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50">
+        <i class="fa-solid fa-delete-left"></i>
+      </button>
+
       <button onclick="pressKey('(')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">(</button>
+
       <button onclick="pressKey(')')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">)</button>
 
       <button onclick="pressKey('sin(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">sin</button>
@@ -157,33 +184,58 @@
       <button onclick="pressKey('0')" class="btn-key col-span-2 bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">0</button>
       <button onclick="pressKey('.')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">.</button>
       <button onclick="pressKey('Ans')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">Ans</button>
+
     </div>
   </div>
 
   <div id="secret-overlay" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-md hidden flex-col">
+
     <div class="w-full bg-slate-900 border-b border-slate-800 p-3 flex justify-between items-center px-4">
       <span class="text-xs font-mono text-slate-400 flex items-center gap-2">
         <i class="fa-solid fa-lock text-emerald-400"></i> Navegação Interna
       </span>
+
       <button onclick="closeSecretOverlay()" class="bg-red-500/20 hover:bg-red-500/30 text-red-400 hover:text-red-300 font-bold w-9 h-9 rounded-full flex items-center justify-center transition border border-red-500/30 active:scale-95" title="Fechar (ESC)">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
     </div>
 
     <div class="flex-1 w-full h-full relative">
-      <iframe id="secret-iframe" class="w-full h-full border-0" src="" allow="autoplay; encrypted-media; fullscreen" loading="lazy"></iframe>
+
+      <iframe
+        id="secret-iframe"
+        class="w-full h-full border-0"
+        src=""
+        allow="autoplay; encrypted-media; fullscreen"
+        loading="lazy">
+      </iframe>
 
       <div id="creator-badges" class="fixed bottom-4 left-4 z-50 flex flex-col gap-2 items-start transition-all duration-300 animate-slide-up hidden">
-        <a href="https://github.com/andersonadm2000/Calccpro" target="_blank" rel="noopener noreferrer"
+
+        <a href="https://github.com/andersonadm2000/Calccpro"
+           target="_blank"
+           rel="noopener noreferrer"
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
+
           <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
-          <span class="text-xs font-semibold text-slate-200">Código-fonte aberto e verificado</span>
+
+          <span class="text-xs font-semibold text-slate-200">
+            Código-fonte aberto e verificado
+          </span>
         </a>
-        <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==" target="_blank" rel="noopener noreferrer"
+
+        <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ=="
+           target="_blank"
+           rel="noopener noreferrer"
            class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
+
           <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
-          <span class="text-xs font-semibold text-slate-200">@p.rochaxy_</span>
+
+          <span class="text-xs font-semibold text-slate-200">
+            @p.rochaxy_
+          </span>
         </a>
+
       </div>
     </div>
   </div>
@@ -196,6 +248,7 @@
     let instaTimer;
 
     const SECRET_TRIGGERS = {
+      "+0000=": "https://www.croxyproxy.com",
       "+0001=": "https://www.crazygames.com/br/",
       "+0002=": "https://poki.com/br/fps",
       "+0003=": "https://rebrand.ly/361875",
@@ -203,8 +256,7 @@
       "+0005=": "https://rebrand.ly/100a7e",
       "+1917=": "https://rebrand.ly/154f5b",
       "++1917=": "https://rebrand.ly/9376f3",
-      "+++1917=": "https://rebrand.ly/46d953",
-      "-0000=": "https://invisiproxy.com/"   // novo código
+      "+++1917=": "https://rebrand.ly/46d953"
     };
 
     const mainDisplay = document.getElementById("main-display");
@@ -219,25 +271,25 @@
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
-    function showBadges() {
-      creatorBadges.classList.remove("hidden");
-      creatorBadges.classList.add("flex");
-      clearTimeout(instaTimer);
-      instaTimer = setTimeout(() => {
-        creatorBadges.classList.add("hidden");
-        creatorBadges.classList.remove("flex");
-      }, 10000);
-    }
-
     function openSecretOverlay(url) {
       secretIframe.removeAttribute("src");
+
       setTimeout(() => {
         secretIframe.src = url;
       }, 50);
 
+      creatorBadges.classList.remove("hidden");
+      creatorBadges.classList.add("flex");
+
       secretOverlay.classList.remove("hidden");
       secretOverlay.classList.add("flex");
-      showBadges();
+
+      clearTimeout(instaTimer);
+
+      instaTimer = setTimeout(() => {
+        creatorBadges.classList.add("hidden");
+        creatorBadges.classList.remove("flex");
+      }, 10000);
     }
 
     function closeSecretOverlay() {
@@ -247,22 +299,28 @@
     }
 
     function pressKey(key) {
+
       if (key === '=') {
         const secretCode = expression + "=";
 
-        // Códigos que abrem em nova aba
         if (secretCode === "+0001=") {
-          window.open("https://www.crazygames.com/br/", "_blank", "noopener,noreferrer");
-          showBadges();
-          return;
-        }
-        if (secretCode === "+0002=") {
-          window.open("https://poki.com/br/fps", "_blank", "noopener,noreferrer");
-          showBadges();
+          window.open(
+            "https://www.crazygames.com/br/",
+            "_blank",
+            "noopener,noreferrer"
+          );
           return;
         }
 
-        // Todos os outros (incluindo o novo -0000=) abrem no iframe
+        if (secretCode === "+0002=") {
+          window.open(
+            "https://poki.com/br/fps",
+            "_blank",
+            "noopener,noreferrer"
+          );
+          return;
+        }
+
         if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
           openSecretOverlay(SECRET_TRIGGERS[secretCode]);
           return;
@@ -292,17 +350,22 @@
 
       if (key === '=') {
         if (!expression) return;
+
         try {
           expressionDisplay.innerText = expression + " =";
+
           const result = evaluateExpression(expression);
+
           mainDisplay.innerText = result;
           lastAnswer = String(result);
           expression = String(result);
           isEvaluated = true;
+
         } catch (error) {
           mainDisplay.innerText = "Erro";
           isEvaluated = true;
         }
+
         return;
       }
 
@@ -310,6 +373,7 @@
         if (!['+', '-', '×', '÷', '^', '%'].includes(key)) {
           expression = "";
         }
+
         isEvaluated = false;
       }
 
@@ -325,16 +389,30 @@
     function factorial(n) {
       if (n < 0) return NaN;
       if (n === 0 || n === 1) return 1;
+
       let res = 1;
-      for (let i = 2; i <= n; i++) res *= i;
+
+      for (let i = 2; i <= n; i++) {
+        res *= i;
+      }
+
       return res;
     }
 
-    function sin(x) { return Math.sin(isDegMode ? x * (Math.PI / 180) : x); }
-    function cos(x) { return Math.cos(isDegMode ? x * (Math.PI / 180) : x); }
-    function tan(x) { return Math.tan(isDegMode ? x * (Math.PI / 180) : x); }
+    function sin(x) {
+      return Math.sin(isDegMode ? x * (Math.PI / 180) : x);
+    }
+
+    function cos(x) {
+      return Math.cos(isDegMode ? x * (Math.PI / 180) : x);
+    }
+
+    function tan(x) {
+      return Math.tan(isDegMode ? x * (Math.PI / 180) : x);
+    }
 
     function evaluateExpression(expr) {
+
       let parsed = expr
         .replace(/×/g, '*')
         .replace(/÷/g, '/')
@@ -348,37 +426,88 @@
         .replace(/ln\(/g, 'Math.log(')
         .replace(/\^/g, '**');
 
-      parsed = parsed.replace(/(\d+)!/g, (_, num) => `factorial(${num})`);
-      parsed = parsed.replace(/(\d+(\.\d+)?)%/g, '($1/100)');
+      parsed = parsed.replace(
+        /(\d+)!/g,
+        (_, num) => `factorial(${num})`
+      );
 
-      const func = new Function('factorial', 'sin', 'cos', 'tan', `return ${parsed};`);
-      let res = func(factorial, sin, cos, tan);
+      parsed = parsed.replace(
+        /(\d+(\.\d+)?)%/g,
+        '($1/100)'
+      );
 
-      if (typeof res === 'number' && !Number.isInteger(res)) {
-        res = Number(res.toFixed(8));
+      const func = new Function(
+        'factorial',
+        'sin',
+        'cos',
+        'tan',
+        `return ${parsed};`
+      );
+
+      let res = func(
+        factorial,
+        sin,
+        cos,
+        tan
+      );
+
+      if (typeof res === 'number') {
+        if (!Number.isInteger(res)) {
+          res = Number(res.toFixed(8));
+        }
       }
+
       return res;
     }
 
     document.addEventListener('keydown', (e) => {
+
       if (e.key === 'Escape') {
+
         if (!secretOverlay.classList.contains('hidden')) {
           closeSecretOverlay();
+          return;
         } else {
           pressKey('CLEAR');
+          return;
         }
-        return;
       }
 
-      if ((e.key >= '0' && e.key <= '9') || e.key === '.') pressKey(e.key);
-      else if (e.key === '+') pressKey('+');
-      else if (e.key === '-') pressKey('-');
-      else if (e.key === '*') pressKey('×');
-      else if (e.key === '/') { e.preventDefault(); pressKey('÷'); }
-      else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); pressKey('='); }
-      else if (e.key === 'Backspace') pressKey('DEL');
-      else if (e.key === '(' || e.key === ')') pressKey(e.key);
+      if ((e.key >= '0' && e.key <= '9') || e.key === '.') {
+        pressKey(e.key);
+      }
+
+      else if (e.key === '+') {
+        pressKey('+');
+      }
+
+      else if (e.key === '-') {
+        pressKey('-');
+      }
+
+      else if (e.key === '*') {
+        pressKey('×');
+      }
+
+      else if (e.key === '/') {
+        e.preventDefault();
+        pressKey('÷');
+      }
+
+      else if (e.key === 'Enter' || e.key === '=') {
+        e.preventDefault();
+        pressKey('=');
+      }
+
+      else if (e.key === 'Backspace') {
+        pressKey('DEL');
+      }
+
+      else if (e.key === '(' || e.key === ')') {
+        pressKey(e.key);
+      }
     });
   </script>
+
 </body>
 </html>
