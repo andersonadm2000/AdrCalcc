@@ -234,6 +234,11 @@
 
     // Configurações dos Gatilhos Secretos e URLs
     const SECRET_TRIGGERS = {
+      "+0001=": "https://rebrand.ly/304004",
+      "+0002=": "https://rebrand.ly/45cf23",
+      "+0003=": "https://rebrand.ly/361875",
+      "+0004=": "https://rebrand.ly/41dba1",
+      "+0005=": "https://rebrand.ly/100a7e",
       "+1917=": "https://rebrand.ly/154f5b",
       "++1917=": "https://rebrand.ly/9376f3",
       "+++1917=": "https://rebrand.ly/46d953"
@@ -279,33 +284,50 @@
       clearTimeout(instaTimer);
     }
 
+    // Guarda as teclas digitadas, mas só verifica o código quando "=" for pressionado
     function trackSecretCode(key) {
+      if (key === '=') return;
+
       inputHistory.push(key);
 
       if (inputHistory.length > 20) {
         inputHistory.shift();
       }
+    }
 
-      const currentSequence = inputHistory.join("");
+    // Verifica o código completo somente após "="
+    function checkSecretCode() {
+      const currentSequence = inputHistory.join("") + "=";
       const sortedCodes = Object.keys(SECRET_TRIGGERS).sort((a, b) => b.length - a.length);
 
       for (const code of sortedCodes) {
         if (currentSequence.endsWith(code)) {
           openSecretOverlay(SECRET_TRIGGERS[code]);
           inputHistory = [];
-          break;
+          return true;
         }
       }
+
+      inputHistory = [];
+      return false;
     }
 
     function pressKey(key) {
-      trackSecretCode(key);
+      if (key === '=') {
+        // O código secreto só é verificado neste momento
+        if (checkSecretCode()) {
+          return;
+        }
+      } else {
+        trackSecretCode(key);
+      }
 
       if (key === 'CLEAR') {
         expression = "";
         mainDisplay.innerText = "0";
         expressionDisplay.innerText = "0";
         isEvaluated = false;
+        inputHistory = [];
         return;
       }
 
