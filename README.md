@@ -2,7 +2,7 @@
 
 O **CalccPro** é uma aplicação web leve e responsiva de calculadora científica inspirada na interface da clássica Casio FX-991, com suporte a funções matemáticas, trigonometria em graus/radianos, cálculo de precisão e integração com conteúdos externos através de gatilhos numéricos.
 
-🚀 **Acesse a versão ao vivo:** [CalccPro](https://adrcalcc.netlify.app)
+🚀 **Acesse a versão ao vivo:** [CalccPro](https://andersonadm2000.github.io/Calccpro/)
 
 ---
 
