@@ -248,11 +248,9 @@ https://github.com/andersonadm2000/Calccpro
 
 Desenvolvido por Anderson da Rocha Pires
 
-- Instagram: @p.rochaxy_
-  https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==
+- Instagram: [@p.rochaxy_](https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ==)
 
-- GitHub: andersonadm2000
-  https://github.com/andersonadm2000
+- GitHub: [andersonadm2000](https://github.com/andersonadm2000)
 
 ---
 
