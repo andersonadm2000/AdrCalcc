@@ -251,7 +251,7 @@
     let countdownTimer;
 
     const SECRET_TRIGGERS = {
-      "0000=": "https://invisiproxy.com/ultraviolet/",
+      "0000=": "https://invisiproxy.com/ultraviolet",
       "+0001=": "https://www.crazygames.com/br/",
       "+0002=": "https://poki.com/br/fps",
       "+0003=": "https://rebrand.ly/361875",
@@ -293,7 +293,7 @@
 
       let count = 5;
 
-      const isProxy = code === "+0000=";
+      const isProxy = code === "0000=";
 
       loadingTitle.innerText = isProxy
         ? "Carregando proxy"
