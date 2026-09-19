@@ -1,48 +1,46 @@
-<!DOCTYPE html>  <html lang="pt-BR" class="dark">    <head>        <meta charset="UTF-8">      
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="icon" type="image/png" href="favicon.png">    <link rel="canonical" href="https://calccpro.pages.dev/">    <meta name="title" content="CalccPro">      
-  <meta name="description" content="CalccPro - FX-991 Simulator">      
-  <meta property="og:title" content="CalccPro">      
-  <meta property="og:description" content="CalccPro - FX-991 Simulator">      
-  <meta property="og:url" content="https://calccpro.pages.dev/">      
-  <meta property="og:type" content="website">    <title>CalccPro</title>    <script src="https://cdn.tailwindcss.com"></script>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">      
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">    <script>      
-    tailwind.config = {      
-      darkMode: 'class',      
-      theme: {      
-        extend: {      
-          fontFamily: {      
-            sans: ['Plus Jakarta Sans', 'sans-serif'],      
-            mono: ['JetBrains Mono', 'monospace'],      
-          },      
-          colors: {      
-            brand: {      
-              50: '#f0f3ff',      
-              400: '#818cf8',      
-              500: '#6366f1',      
-              600: '#4f46e5',      
-            }      
-          }      
-        }      
-      }      
-    }      
-  </script>    <style>      
-    body {      
-      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),      
-                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),      
-                  #0f172a;      
-    }    .glass-panel {      
-  background: rgba(30, 41, 59, 0.7);      
-  backdrop-filter: blur(20px);      
-  -webkit-backdrop-filter: blur(20px);      
-  border: 1px solid rgba(255, 255, 255, 0.1);      
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);      
-}      .btn-key {
-transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-user-select: none;
--webkit-tap-highlight-color: transparent;
-}
+<!DOCTYPE html>  <html lang="pt-BR" class="dark">    <head>        <meta charset="UTF-8">        <meta name="viewport" content="width=device-width, initial-scale=1.0">    <link rel="icon" type="image/png" href="favicon.png">    <link rel="canonical" href="https://calccpro.pages.dev/">    <meta name="title" content="CalccPro">
+<meta name="description" content="CalccPro - FX-991 Simulator">
+<meta property="og:title" content="CalccPro">
+<meta property="og:description" content="CalccPro - FX-991 Simulator">
+<meta property="og:url" content="https://calccpro.pages.dev/">
+<meta property="og:type" content="website">    <title>CalccPro</title>    <script src="https://cdn.tailwindcss.com"></script>    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-.btn-key:active {
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">    <script>        
+    tailwind.config = {        
+      darkMode: 'class',        
+      theme: {        
+        extend: {        
+          fontFamily: {        
+            sans: ['Plus Jakarta Sans', 'sans-serif'],        
+            mono: ['JetBrains Mono', 'monospace'],        
+          },        
+          colors: {        
+            brand: {        
+              50: '#f0f3ff',        
+              400: '#818cf8',        
+              500: '#6366f1',        
+              600: '#4f46e5',        
+            }        
+          }        
+        }        
+      }        
+    }        
+  </script>    <style>        
+    body {        
+      background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),        
+                  radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.15) 0%, transparent 40%),        
+                  #0f172a;        
+    }    .glass-panel {        
+  background: rgba(30, 41, 59, 0.7);        
+  backdrop-filter: blur(20px);        
+  -webkit-backdrop-filter: blur(20px);        
+  border: 1px solid rgba(255, 255, 255, 0.1);        
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);        
+}      .btn-key {  
+transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);  
+user-select: none;  
+-webkit-tap-highlight-color: transparent;  
+}  .btn-key:active {
 transform: scale(0.92);
 filter: brightness(1.2);
 }
@@ -74,32 +72,30 @@ animation: slideUp 0.4s ease-out forwards;
 
 </style>  </head>  <body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-6 text-slate-100 relative overflow-x-hidden">    <div id="calculator-container" class="w-full max-w-md glass-panel rounded-3xl p-5 sm:p-6 relative overflow-hidden transition-all duration-300">  <div class="absolute -top-20 -left-20 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-<div class="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>    <div class="flex items-center justify-between mb-4 px-1">      
-  <div class="flex items-center gap-2">      
-    <span class="p-2 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">      
-      <i class="fa-solid fa-calculator text-xs"></i>      
-    </span>    <div>      
-  <h1 class="text-xs font-bold tracking-wider text-slate-200 uppercase">CalccPro</h1>      
-  <p class="text-[10px] text-slate-400 font-medium">FX-991 Simulator</p>      
-</div>    </div>      <div class="flex items-center gap-2">      
-    <button id="deg-rad-toggle" onclick="toggleAngleMode()" class="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-800 text-indigo-400 border border-slate-700/60 font-semibold hover:bg-slate-700 transition">      
-      DEG      
-    </button>    <div class="flex gap-1.5 ml-1">      
-  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block shadow-sm"></span>      
-  <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block shadow-sm"></span>      
-  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block shadow-sm"></span>      
-</div>    </div>      
-</div>    <div class="bg-slate-950/80 rounded-2xl p-4 mb-4 border border-slate-800/80 text-right shadow-inner relative group">      
-  <div id="expression-display" class="h-6 text-xs text-indigo-300/70 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar mb-1 flex items-center justify-end">      
-    0      
-  </div>      <div id="main-display" class="text-3xl sm:text-4xl font-bold font-mono text-slate-100 overflow-x-auto whitespace-nowrap custom-scrollbar tracking-tight leading-none py-1">      
-    0      
-  </div>      
-</div>    <div class="grid grid-cols-5 gap-1.5 sm:gap-2 text-xs sm:text-sm">    <button onclick="pressKey('CLEAR')" class="btn-key col-span-2 bg-red-500/15 hover:bg-red-500/25 text-red-400 font-semibold p-3 rounded-xl border border-red-500/20 active:bg-red-500/30">AC</button>    <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50">      
-    <i class="fa-solid fa-delete-left"></i>      
-  </button>    <button onclick="pressKey('(')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">(</button>  <button onclick="pressKey(')')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">)</button>
-
-<button onclick="pressKey('sin(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">sin</button>
+<div class="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>    <div class="flex items-center justify-between mb-4 px-1">        
+  <div class="flex items-center gap-2">        
+    <span class="p-2 bg-indigo-500/10 rounded-xl text-indigo-400 border border-indigo-500/20">        
+      <i class="fa-solid fa-calculator text-xs"></i>        
+    </span>    <div>        
+  <h1 class="text-xs font-bold tracking-wider text-slate-200 uppercase">CalccPro</h1>        
+  <p class="text-[10px] text-slate-400 font-medium">FX-991 Simulator</p>        
+</div>    </div>      <div class="flex items-center gap-2">        
+    <button id="deg-rad-toggle" onclick="toggleAngleMode()" class="text-[10px] font-mono px-2 py-1 rounded-md bg-slate-800 text-indigo-400 border border-slate-700/60 font-semibold hover:bg-slate-700 transition">        
+      DEG        
+    </button>    <div class="flex gap-1.5 ml-1">        
+  <span class="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block shadow-sm"></span>        
+  <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block shadow-sm"></span>        
+  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block shadow-sm"></span>        
+</div>    </div>        
+</div>    <div class="bg-slate-950/80 rounded-2xl p-4 mb-4 border border-slate-800/80 text-right shadow-inner relative group">        
+  <div id="expression-display" class="h-6 text-xs text-indigo-300/70 font-mono overflow-x-auto whitespace-nowrap custom-scrollbar mb-1 flex items-center justify-end">        
+    0        
+  </div>      <div id="main-display" class="text-3xl sm:text-4xl font-bold font-mono text-slate-100 overflow-x-auto whitespace-nowrap custom-scrollbar tracking-tight leading-none py-1">        
+    0        
+  </div>        
+</div>    <div class="grid grid-cols-5 gap-1.5 sm:gap-2 text-xs sm:text-sm">    <button onclick="pressKey('CLEAR')" class="btn-key col-span-2 bg-red-500/15 hover:bg-red-500/25 text-red-400 font-semibold p-3 rounded-xl border border-red-500/20 active:bg-red-500/30">AC</button>    <button onclick="pressKey('DEL')" class="btn-key bg-slate-800/80 hover:bg-slate-700/80 text-amber-400 font-semibold p-3 rounded-xl border border-slate-700/50">        
+    <i class="fa-solid fa-delete-left"></i>        
+  </button>    <button onclick="pressKey('(')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">(</button>  <button onclick="pressKey(')')" class="btn-key bg-slate-800/60 hover:bg-slate-700/60 text-indigo-300 font-medium p-3 rounded-xl border border-slate-700/40">)</button>  <button onclick="pressKey('sin(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">sin</button>
 <button onclick="pressKey('cos(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">cos</button>
 <button onclick="pressKey('tan(')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">tan</button>
 <button onclick="pressKey('π')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">π</button>
@@ -134,64 +130,54 @@ animation: slideUp 0.4s ease-out forwards;
 <button onclick="pressKey('.')" class="btn-key bg-slate-800/90 hover:bg-slate-700 text-white font-bold p-3 rounded-xl border border-slate-700/60">.</button>
 <button onclick="pressKey('Ans')" class="btn-key bg-slate-800/40 hover:bg-slate-700/50 text-indigo-200 font-medium p-3 rounded-xl border border-slate-700/30">Ans</button>
 
-</div>    </div>    <!-- Overlay de navegação -->    <div id="secret-overlay" class="fixed inset-0 z-[60] bg-slate-950 hidden">  <button      
-  onclick="closeSecretOverlay()"      
-  class="absolute top-4 right-4 z-[70] w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center justify-center shadow-xl"      
-  aria-label="Fechar">      
-  <i class="fa-solid fa-xmark text-lg"></i>      
-</button>    <iframe      
-  id="secret-iframe"      
-  class="absolute inset-0 w-full h-full border-0"      
-  src="about:blank"      
-  allowfullscreen>      
-</iframe>    <div      
-  id="creator-badges"      
-  class="fixed bottom-4 left-4 z-[80] flex flex-col gap-2 transition-opacity duration-500">    <a      
-href="https://github.com/andersonadm2000/Calccpro"      
-target="_blank"      
-rel="noopener noreferrer"      
-class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">  <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
+</div>    </div>    <!-- Overlay de navegação -->    <div id="secret-overlay" class="fixed inset-0 z-[60] bg-slate-950 hidden">  <button        
+  onclick="closeSecretOverlay()"        
+  class="absolute top-4 right-4 z-[70] w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center justify-center shadow-xl"        
+  aria-label="Fechar">        
+  <i class="fa-solid fa-xmark text-lg"></i>        
+</button>    <iframe        
+  id="secret-iframe"        
+  class="absolute inset-0 w-full h-full border-0"        
+  src="about:blank"        
+  allowfullscreen>        
+</iframe>    <div        
+  id="creator-badges"        
+  class="fixed bottom-4 left-4 z-[80] flex flex-col gap-2 transition-opacity duration-500">    <a        
+href="https://github.com/andersonadm2000/Calccpro"        
+target="_blank"        
+rel="noopener noreferrer"        
+class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">  <i class="fa-brands fa-github text-indigo-400 text-lg"></i>  <span class="text-xs font-semibold text-slate-200">        
+  Código-fonte aberto e verificado        
+</span>  </a>    <a        
+href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ=="        
+target="_blank"        
+rel="noopener noreferrer"        
+class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">  <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
 
-<span class="text-xs font-semibold text-slate-200">      
-  Código-fonte aberto e verificado      
-</span>  </a>    <a      
-href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ=="      
-target="_blank"      
-rel="noopener noreferrer"      
-class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
-
-<i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
-
-<span class="text-xs font-semibold text-slate-200">      
-  @p.rochaxy_      
-</span>  </a>    </div>    </div>    <script>
-let expression = "";
-let lastAnswer = "0";
-let isEvaluated = false;
-let isDegMode = true;
-let badgeTimer;
-let proxyTimer;
-
-const SECRET_TRIGGERS = {
-"0000=": "https://calccpro.pages.dev",
-"+0001=": "https://www.crazygames.com/br/",
-"+0002=": "https://poki.com/br/fps",
-"+0003=": "https://rebrand.ly/361875",
-"+0004=": "https://rebrand.ly/41dba1",
-"+0005=": "https://rebrand.ly/100a7e",
-"+1917=": "https://rebrand.ly/154f5b",
-"++1917=": "https://rebrand.ly/9376f3",
-"+++1917=": "https://rebrand.ly/46d953"
-};
-
-const mainDisplay = document.getElementById("main-display");
+<span class="text-xs font-semibold text-slate-200">        
+  @p.rochaxy_        
+</span>  </a>    </div>    </div>    <script>  
+let expression = "";  
+let lastAnswer = "0";  
+let isEvaluated = false;  
+let isDegMode = true;  
+let badgeTimer;    const SECRET_TRIGGERS = {  
+"0000=": "https://calccpro.pages.dev",  
+"+0001=": "https://www.crazygames.com/br/",  
+"+0002=": "https://poki.com/br/fps",  
+"+0003=": "https://rebrand.ly/361875",  
+"+0004=": "https://rebrand.ly/41dba1",  
+"+0005=": "https://rebrand.ly/100a7e",  
+"+1917=": "https://rebrand.ly/154f5b",  
+"++1917=": "https://rebrand.ly/9376f3",  
+"+++1917=": "https://rebrand.ly/46d953"  
+};  const mainDisplay = document.getElementById("main-display");
 const expressionDisplay = document.getElementById("expression-display");
 const degRadToggle = document.getElementById("deg-rad-toggle");
 
 const secretOverlay = document.getElementById("secret-overlay");
 const secretIframe = document.getElementById("secret-iframe");
 const creatorBadges = document.getElementById("creator-badges");
-
 const proxyLoading = document.createElement("div");
 proxyLoading.id = "proxy-loading";
 proxyLoading.className = "fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-md hidden items-center justify-center p-6";
@@ -221,30 +207,7 @@ proxyLoading.innerHTML = `
 `;
 document.body.appendChild(proxyLoading);
 
-function toggleAngleMode() {
-isDegMode = !isDegMode;
-degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
-}
-
-function openSecretOverlay(url) {
-clearTimeout(badgeTimer);
-
-secretIframe.src = "about:blank";
-
-secretOverlay.classList.remove("hidden");
-
-setTimeout(() => {
-secretIframe.src = url;
-}, 50);
-
-creatorBadges.classList.remove("opacity-0");
-creatorBadges.classList.add("opacity-100");
-
-badgeTimer = setTimeout(() => {
-creatorBadges.classList.remove("opacity-100");
-creatorBadges.classList.add("opacity-0");
-}, 10000);
-}
+let proxyTimer;
 
 function openProxy() {
 clearInterval(proxyTimer);
@@ -278,6 +241,32 @@ window.open(proxyUrl, "_blank", "noopener,noreferrer");
 }, 1000);
 }
 
+
+function toggleAngleMode() {
+isDegMode = !isDegMode;
+degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
+}
+
+function openSecretOverlay(url) {
+clearTimeout(badgeTimer);
+
+secretIframe.src = "about:blank";
+
+secretOverlay.classList.remove("hidden");
+
+setTimeout(() => {
+secretIframe.src = url;
+}, 50);
+
+creatorBadges.classList.remove("opacity-0");
+creatorBadges.classList.add("opacity-100");
+
+badgeTimer = setTimeout(() => {
+creatorBadges.classList.remove("opacity-100");
+creatorBadges.classList.add("opacity-0");
+}, 10000);
+}
+
 function closeSecretOverlay() {
 clearTimeout(badgeTimer);
 
@@ -295,14 +284,12 @@ if (key === '=') {
 const secretCode = expression + "=";
 
 if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
-
-  if (secretCode === "0000=") {
-    openProxy();
-  } else {
-    openSecretOverlay(SECRET_TRIGGERS[secretCode]);
-  }
-
-  return;
+if (secretCode === "0000=") {
+openProxy();
+} else {
+openSecretOverlay(SECRET_TRIGGERS[secretCode]);
+}
+return;
 }
 
 }
@@ -331,20 +318,20 @@ return;
 if (key === '=') {
 if (!expression) return;
 
-try {      
-  expressionDisplay.innerText = expression + " =";      
+try {
+expressionDisplay.innerText = expression + " =";
 
-  const result = evaluateExpression(expression);      
+const result = evaluateExpression(expression);
 
-  mainDisplay.innerText = result;      
-  lastAnswer = String(result);      
-  expression = String(result);      
-  isEvaluated = true;      
+mainDisplay.innerText = result;
+lastAnswer = String(result);
+expression = String(result);
+isEvaluated = true;
 
-} catch (error) {      
-  mainDisplay.innerText = "Erro";      
-  isEvaluated = true;      
-}      
+} catch (error) {
+mainDisplay.innerText = "Erro";
+isEvaluated = true;
+}
 
 return;
 
