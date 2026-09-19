@@ -50,16 +50,17 @@ O CalccPro possui uma interface inspirada em calculadoras científicas tradicion
 
 A calculadora possui comandos especiais que podem ser digitados diretamente no teclado numérico e confirmados com "=".
 
-Comando| Conteúdo| Navegação
-"0000="| Acesso à proxy| 🆕 Nova aba após 5 segundos
-"+0001="| Crazy Games| 🆕 Nova aba após 5 segundos
-"+0002="| Poki| 🆕 Nova aba após 5 segundos
-"+0003="| freegames.io| 🆕 Nova aba após 5 segundos
-"+0004="| Drift Hunters| 🆕 Nova aba após 5 segundos
-"+0005="| Tycoon Farm| 🆕 Nova aba após 5 segundos
-"+1917="| Página de jogos casuais simples| 🆕 Nova aba após 5 segundos
-"++1917="| Emulador online de consoles clássicos| 🆕 Nova aba após 5 segundos
-"+++1917="| Jogos360.com| 🆕 Nova aba após 5 segundos
+| Comando | Conteúdo | Navegação |
+|---|---|---|
+| "0000=" | Acesso à proxy | 🆕 Nova aba após 5 segundos |
+| "+0001=" | Crazy Games | 🆕 Nova aba após 5 segundos |
+| "+0002=" | Poki | 🆕 Nova aba após 5 segundos |
+| "+0003=" | freegames.io | 🆕 Nova aba após 5 segundos |
+| "+0004=" | Drift Hunters | 🆕 Nova aba após 5 segundos |
+| "+0005=" | Tycoon Farm | 🆕 Nova aba após 5 segundos |
+| "+1917=" | Página de jogos casuais simples | 🆕 Nova aba após 5 segundos |
+| "++1917=" | Emulador online de consoles clássicos | 🆕 Nova aba após 5 segundos |
+| "+++1917=" | Jogos360.com | 🆕 Nova aba após 5 segundos |
 
 Como funciona
 
@@ -261,5 +262,3 @@ Desenvolvido por Anderson da Rocha Pires
 Este projeto está sob a licença MIT.
 
 Consulte o arquivo "LICENSE" para obter os termos completos da licença.
-
-
