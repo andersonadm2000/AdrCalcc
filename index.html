@@ -188,58 +188,53 @@
     </div>
   </div>
 
-  <!-- Tela de carregamento -->
-  <div id="loading-overlay" class="fixed inset-0 z-[60] bg-slate-950/95 backdrop-blur-md hidden items-center justify-center">
+  <!-- Overlay de navegação -->
+  <div id="secret-overlay" class="fixed inset-0 z-[60] bg-slate-950 hidden">
 
-    <div class="w-full max-w-md px-6 text-center">
+    <button
+      onclick="closeSecretOverlay()"
+      class="absolute top-4 right-4 z-[70] w-11 h-11 rounded-full bg-slate-900/90 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 transition flex items-center justify-center shadow-xl"
+      aria-label="Fechar">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
 
-      <div class="mb-6">
-        <i class="fa-solid fa-spinner fa-spin text-3xl text-indigo-400"></i>
-      </div>
+    <iframe
+      id="secret-iframe"
+      class="absolute inset-0 w-full h-full border-0"
+      src="about:blank"
+      allowfullscreen>
+    </iframe>
 
-      <div id="loading-title" class="text-sm font-bold uppercase tracking-widest text-slate-300 mb-2">
-        Carregando URL
-      </div>
+    <div
+      id="creator-badges"
+      class="fixed bottom-4 left-4 z-[80] flex flex-col gap-2 transition-opacity duration-500">
 
-      <div id="loading-site" class="text-base font-semibold text-indigo-400 mb-6">
-        Aguarde...
-      </div>
+      <a
+        href="https://github.com/andersonadm2000/Calccpro"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
 
-      <div id="loading-number" class="text-7xl sm:text-8xl font-bold font-mono text-white leading-none">
-        5
-      </div>
+        <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
 
-      <div class="text-xs text-slate-500 mt-4 font-mono">
-        Aguarde <span id="loading-counter">5</span> segundos
-      </div>
+        <span class="text-xs font-semibold text-slate-200">
+          Código-fonte aberto e verificado
+        </span>
+      </a>
 
-      <div class="mt-8 flex flex-col gap-2 items-center">
+      <a
+        href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ=="
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
 
-        <a href="https://github.com/andersonadm2000/Calccpro"
-           target="_blank"
-           rel="noopener noreferrer"
-           class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-indigo-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
+        <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
 
-          <i class="fa-brands fa-github text-indigo-400 text-lg"></i>
+        <span class="text-xs font-semibold text-slate-200">
+          @p.rochaxy_
+        </span>
+      </a>
 
-          <span class="text-xs font-semibold text-slate-200">
-            Código-fonte aberto e verificado
-          </span>
-        </a>
-
-        <a href="https://www.instagram.com/p.rochaxy_?stkn=MTg1dHRrY25zMHRqbQ=="
-           target="_blank"
-           rel="noopener noreferrer"
-           class="flex items-center gap-2 bg-slate-900/90 text-white px-3.5 py-2 rounded-full border border-pink-500/40 shadow-2xl backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95">
-
-          <i class="fa-brands fa-instagram text-pink-500 text-lg"></i>
-
-          <span class="text-xs font-semibold text-slate-200">
-            @p.rochaxy_
-          </span>
-        </a>
-
-      </div>
     </div>
   </div>
 
@@ -248,7 +243,7 @@
     let lastAnswer = "0";
     let isEvaluated = false;
     let isDegMode = true;
-    let countdownTimer;
+    let badgeTimer;
 
     const SECRET_TRIGGERS = {
       "0000=": "https://invisiproxy.com/ultraviolet",
@@ -262,72 +257,48 @@
       "+++1917=": "https://rebrand.ly/46d953"
     };
 
-    const SITE_NAMES = {
-      "+0001=": "CrazyGames",
-      "+0002=": "Poki",
-      "+0003=": "Rebrand",
-      "+0004=": "Rebrand",
-      "+0005=": "Rebrand",
-      "+1917=": "Rebrand",
-      "++1917=": "Rebrand",
-      "+++1917=": "Rebrand"
-    };
-
     const mainDisplay = document.getElementById("main-display");
     const expressionDisplay = document.getElementById("expression-display");
     const degRadToggle = document.getElementById("deg-rad-toggle");
 
-    const loadingOverlay = document.getElementById("loading-overlay");
-    const loadingTitle = document.getElementById("loading-title");
-    const loadingSite = document.getElementById("loading-site");
-    const loadingNumber = document.getElementById("loading-number");
-    const loadingCounter = document.getElementById("loading-counter");
+    const secretOverlay = document.getElementById("secret-overlay");
+    const secretIframe = document.getElementById("secret-iframe");
+    const creatorBadges = document.getElementById("creator-badges");
 
     function toggleAngleMode() {
       isDegMode = !isDegMode;
       degRadToggle.innerText = isDegMode ? "DEG" : "RAD";
     }
 
-    function openLoadingScreen(url, code) {
-      clearInterval(countdownTimer);
+    function openSecretOverlay(url) {
+      clearTimeout(badgeTimer);
 
-      let count = 5;
+      secretIframe.src = "about:blank";
 
-      const isProxy = code === "0000=";
+      secretOverlay.classList.remove("hidden");
 
-      loadingTitle.innerText = isProxy
-        ? "Carregando proxy"
-        : "Carregando URL";
+      setTimeout(() => {
+        secretIframe.src = url;
+      }, 50);
 
-      loadingSite.innerText = isProxy
-        ? "Aguarde"
-        : (SITE_NAMES[code] || "Aguarde...");
+      creatorBadges.classList.remove("opacity-0");
+      creatorBadges.classList.add("opacity-100");
 
-      loadingNumber.innerText = count;
-      loadingCounter.innerText = count;
+      badgeTimer = setTimeout(() => {
+        creatorBadges.classList.remove("opacity-100");
+        creatorBadges.classList.add("opacity-0");
+      }, 10000);
+    }
 
-      loadingOverlay.classList.remove("hidden");
-      loadingOverlay.classList.add("flex");
+    function closeSecretOverlay() {
+      clearTimeout(badgeTimer);
 
-      countdownTimer = setInterval(() => {
-        count--;
+      secretIframe.src = "about:blank";
 
-        loadingNumber.innerText = count;
-        loadingCounter.innerText = count;
+      secretOverlay.classList.add("hidden");
 
-        if (count <= 0) {
-          clearInterval(countdownTimer);
-
-          loadingOverlay.classList.remove("flex");
-          loadingOverlay.classList.add("hidden");
-
-          window.open(
-            url,
-            "_blank",
-            "noopener,noreferrer"
-          );
-        }
-      }, 1000);
+      creatorBadges.classList.remove("opacity-0");
+      creatorBadges.classList.add("opacity-100");
     }
 
     function pressKey(key) {
@@ -336,10 +307,7 @@
         const secretCode = expression + "=";
 
         if (Object.prototype.hasOwnProperty.call(SECRET_TRIGGERS, secretCode)) {
-          openLoadingScreen(
-            SECRET_TRIGGERS[secretCode],
-            secretCode
-          );
+          openSecretOverlay(SECRET_TRIGGERS[secretCode]);
           return;
         }
       }
