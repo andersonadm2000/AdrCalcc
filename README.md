@@ -53,12 +53,13 @@ A calculadora possui comandos especiais que podem ser digitados diretamente no t
 | :--- | :--- | :--- |
 | `+0001=` | Crazy Games | 🆕 Nova aba |
 | `+0002=` | Poki | 🆕 Nova aba |
-| `+0003=` | freegames.io | 🖥️ Mesma aba |
-| `+0004=` | Drift Hunters | 🖥️ Mesma aba |
-| `+0005=` | Tycoon Farm | 🖥️ Mesma aba |
-| `+1917=` | Página de jogos casuais simples | 🖥️ Mesma aba |
-| `++1917=` | Emulador online de consoles clássicos | 🖥️ Mesma aba |
-| `+++1917=` | Jogos360.com | 🖥️ Mesma aba |
+| `+0003=` | freegames.io | 🆕 Nova aba |
+| `+0004=` | Drift Hunters | 🆕 Nova aba |
+| `+0005=` | Tycoon Farm | 🆕 Nova aba |
+| `+1917=` | Página de jogos casuais simples | 🆕 Nova aba |
+| `++1917=` | Emulador online de consoles clássicos | 🆕 Nova aba |
+| `+++1917=` | Jogos360.com | 🆕 Nova aba |
+**todas as urls são abertas em novas abas porque infelizmente as proxys não aceitam conteúdo em iframe**
 
 ### Como funciona
 
